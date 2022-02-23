@@ -1,6 +1,6 @@
 autoload -U compinit; compinit
 
-source ~/.config/.aliasrc
+source ~/.config/aliasrc
 
 # Completion stuff
 zstyle ':completion:*' menu select	# Completion menu

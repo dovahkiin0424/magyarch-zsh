@@ -7,6 +7,13 @@ function zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
         # For plugins
+		if [[ -f "$ZDOTDIR/plugins/$PLUGIN_NAME/*.plugin.zsh" || "$ZDOTDIR/plugins/$PLUGIN_NAME/*.zsh" ]]; then
+			if [[ ! -f "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh" ]]; then
+				mv $ZDOTDIR/plugins/$PLUGIN_NAME/*.plugin.zsh $ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh 
+				mv $ZDOTDIR/plugins/$PLUGIN_NAME/*.zsh $ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh
+			fi
+		fi 2> /dev/null
+
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
         zsh_add_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
