@@ -28,8 +28,8 @@ zle -N down-line-or-beginning-search
 
 # Working with urls without quotes ("")
 autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
 autoload -Uz url-quote-magic
+zle -N bracketed-paste bracketed-paste-magic
 zle -N self-insert url-quote-magic
 
 # Colors
@@ -49,7 +49,7 @@ zsh_add_file "zsh-prompt"
 
 # Plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
+zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "t413/zsh-background-notify"
 zsh_add_plugin "MichaelAquilina/zsh-you-should-use"
@@ -67,6 +67,7 @@ bindkey "^j" down-line-or-beginning-search
 # Edit line in vim with ctrl-e:
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+
 
 # Zsh related aliases
 alias d='dirs -v'
