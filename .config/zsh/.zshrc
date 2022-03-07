@@ -7,6 +7,8 @@ zstyle ':completion:*' menu select	# Completion menu
 setopt COMPLETE_ALIASES
 _comp_options+=(globdots)			# With hidden files
 
+unsetopt nomatch
+
 # History and filepath related stuff
 setopt SHARE_HISTORY
 setopt HIST_SAVE_NO_DUPS	# No duplicates in the history file
