@@ -7,7 +7,16 @@ autoload -U colors && colors
 # enable only git 
 zstyle ':vcs_info:*' enable git 
 
-# setup a hook that runs before every ptompt. 
+# setup a hook that runs before every ptompt.
+precmd_in_nix_shell() {
+  if echo "$PATH" | grep -qc '/nix/store'; then
+    export MY_IN_NIX_SHELL="SHELL: "
+  else
+    unset MY_IN_NIX_SHELL
+  fi
+}
+add-zsh-hook precmd precmd_in_nix_shell
+
 precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
@@ -45,5 +54,5 @@ function precmd() {
   fi
 }
 # Prompt
-PROMPT='%F{red}%*%f - %F{white}%n: %B%F{green}%5~%f%b %(!.#.) '	# Left prompt
+PROMPT='${MY_IN_NIX_SHELL}%F{red}%*%f - %F{white}%n: %B%F{green}%5~%f%b %(!.#.) '	# Left prompt
 
